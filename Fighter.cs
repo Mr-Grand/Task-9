@@ -30,7 +30,8 @@ public class Fighter
 
     public virtual void DealDamageTo(Fighter fighter)
     {
-        int dealtDamage = this._damage;
+        int dealtDamage;
+        dealtDamage = this._damage;
         fighter.TakeDamage(dealtDamage);
     }
 }
