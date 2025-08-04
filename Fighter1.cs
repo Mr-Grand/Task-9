@@ -9,11 +9,6 @@ public class Fighter1 : Fighter
     {
         
     }
-    
-    public override void TakeDamage(int amount)
-    {
-        _health -= amount;
-    }
 
     public override void DealDamageTo(Fighter fighter)
     {
@@ -21,11 +16,11 @@ public class Fighter1 : Fighter
         double ifCrit = RandomClass.Random.NextDouble();
         if (ifCrit <= _critChance)
         {
-            dealtDamage = this._damage * (1 + _critMulti/100);
+            dealtDamage = this.Damage * (1 + _critMulti/100);
         }
         else
         {
-            dealtDamage = this._damage;
+            dealtDamage = this.Damage;
         }
         fighter.TakeDamage(dealtDamage);
     }
