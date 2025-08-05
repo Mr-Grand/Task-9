@@ -2,24 +2,26 @@
 
 public class Fighter
 {
-    protected string Class;
-    protected int MaxHealth;
+    protected string ClassName;
+    protected int MaximumHealth;
     protected int Health;
     protected int Armour;
     protected int Damage;
+    protected int WinCount;
+    protected int FightCount;
 
     public Fighter(string fighterClass, int health, int armour, int damage)
     {
-        Class = fighterClass;
-        MaxHealth = health;
-        Health = MaxHealth;
+        ClassName = fighterClass;
+        MaximumHealth = health;
+        Health = MaximumHealth;
         Armour = armour;
         Damage = damage;
     }
 
     public void ShowFighterInfo()
     {
-        Console.WriteLine($"Class: {Class}" +
+        Console.WriteLine($"Class: {ClassName}" +
                           $"\nHealth - {Health}" +
                           $"\nArmour - {Armour}" +
                           $"\nDamage - {Damage}");
@@ -34,11 +36,32 @@ public class Fighter
     {
         int dealtDamage;
         dealtDamage = this.Damage;
+        Console.WriteLine($"{this.ClassName} атакует");
         fighter.TakeDamage(dealtDamage);
     }
 
     public virtual void RestoreAfterFight()
     {
-        Health = MaxHealth;
+        Health = MaximumHealth;
+    }
+
+    public void AddWinToCount()
+    {
+        WinCount++;
+    }
+
+    public void ShowWinRate()
+    {
+        Console.WriteLine($"{ClassName} win rate is {WinCount/FightCount*100}");
+    }
+
+    public string ShowName()
+    {
+        return ClassName;
+    }
+
+    public int CheckHealth()
+    {
+        return Health;
     }
 }

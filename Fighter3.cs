@@ -17,6 +17,7 @@ public class Fighter3 : Fighter
         {
             base.TakeDamage(amount);
             Health += _skillHealthRestore;
+            Console.WriteLine("Ярость была поглощена, здоровье частично восстановлено");
             _rage = 0;
         }
         else

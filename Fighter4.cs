@@ -22,6 +22,7 @@ public class Fighter4 : Fighter
         if (_mana >= _spells[0].GetSpellManaCost())
         {
             dealtDamage = _spells[0].GetSpellDamage();
+            Console.WriteLine($"Было использовано заклинание {_spells[0].GetSpellName()}!");
             fighter.TakeDamage(dealtDamage);
             _mana -= _spells[0].GetSpellManaCost();
         }
@@ -29,5 +30,11 @@ public class Fighter4 : Fighter
         {
             base.DealDamageTo(fighter);
         }
+    }
+
+    public override void RestoreAfterFight()
+    {
+        base.RestoreAfterFight();
+        _mana = _maximumMana;
     }
 }

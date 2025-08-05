@@ -17,11 +17,15 @@ public class Fighter1 : Fighter
         if (ifCrit <= _critChance)
         {
             dealtDamage = this.Damage * (1 + _critMulti/100);
+            fighter.TakeDamage(dealtDamage);
+            Console.WriteLine($"{this.ClassName} атакует и наносит крит!");
         }
         else
         {
-            dealtDamage = this.Damage;
+            base.DealDamageTo(fighter);
+            //dealtDamage = this.Damage;
+            //Console.WriteLine($"{this.Class} атакует");
         }
-        fighter.TakeDamage(dealtDamage);
+        //fighter.TakeDamage(dealtDamage);
     }
 }

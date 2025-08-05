@@ -11,16 +11,16 @@ public class Fighter2 : Fighter
 
     public override void DealDamageTo(Fighter fighter)
     {
-        int dealtDamage = this.Damage;
         if (_attackCount == 3)
         {
-            fighter.TakeDamage(dealtDamage);
-            fighter.TakeDamage(dealtDamage);
+            Console.WriteLine("Произошла двойная атака!");
+            base.DealDamageTo(fighter);
+            base.DealDamageTo(fighter);
             _attackCount = 0;
         }
         else
         {
-            fighter.TakeDamage(dealtDamage);
+            base.DealDamageTo(fighter);
             _attackCount++;
         }
        

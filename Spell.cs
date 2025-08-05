@@ -22,4 +22,9 @@ public class Spell
     {
         return _spellDamage;
     }
+
+    public string GetSpellName()
+    {
+        return _spellName;
+    }
 }
