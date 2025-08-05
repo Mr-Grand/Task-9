@@ -23,22 +23,22 @@ class Program
                 {
                     case ConsoleKey.D1:
                         Console.WriteLine($"В казарме есть {ArenaFighters.Fighters.Count} бойцов. Вот их классы:");
-                        int i = 0;
+                        int i = 1;
                         foreach (Fighter fighter in ArenaFighters.Fighters)
                         {
-                            Console.WriteLine($"| {i}{fighter.ShowName()} | ");
+                            Console.WriteLine($"| {i}-{fighter.ShowName()} | ");
                             i++;
                         }
 
                         Console.WriteLine("Кого выберете для дуэли?");
-                        int chooseFirstFighter = Convert.ToInt32(Console.ReadLine());
+                        int chooseFirstFighter = Convert.ToInt32(Console.ReadLine()) - 1;
                         arena.AddFighter(ArenaFighters.Fighters[chooseFirstFighter]);
                         Console.WriteLine($"Хороший выбор. Кто будет его оппонентом?");
-                        int chooseSecondFighter = Convert.ToInt32(Console.ReadLine());
+                        int chooseSecondFighter = Convert.ToInt32(Console.ReadLine()) - 1;
                         arena.AddFighter(ArenaFighters.Fighters[chooseSecondFighter]);
 
-                        Console.WriteLine($"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter]} и " +
-                                          $"{ArenaFighters.Fighters[chooseFirstFighter]}!");
+                        Console.WriteLine($"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter].ShowName()} и " +
+                                          $"{ArenaFighters.Fighters[chooseSecondFighter].ShowName()}!");
                         Console.WriteLine("Начинаем битву?" +
                                           "\n1) Да, начинаем" +
                                           "\n2) Нет, выйти в меню");
@@ -47,18 +47,19 @@ class Program
                         if (inputIfStart == ConsoleKey.D1)
                         {
                             arena.StartFightOnArena();
+                            arena.ShowFightResult();
                             break;
                         }
                         else
                         {
                             Console.SetCursorPosition(0,0);
                             Console.Clear();
+                            switchContinue = false;
                             break;
                         }
                         
                         
                         
-                        break;
                     case ConsoleKey.D2:
                         foreach (Fighter fighter in ArenaFighters.Fighters)
                         {

@@ -14,7 +14,7 @@ public class Fighter1 : Fighter
     {
         int dealtDamage = 0;
         double ifCrit = RandomClass.Random.NextDouble();
-        if (ifCrit <= _critChance)
+        if (ifCrit <= _critChance/100)
         {
             dealtDamage = this.Damage * (1 + _critMulti/100);
             fighter.TakeDamage(dealtDamage);

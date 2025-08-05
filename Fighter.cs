@@ -50,6 +50,11 @@ public class Fighter
         WinCount++;
     }
 
+    public void AddBattleToCount()
+    {
+        FightCount++;
+    }
+
     public void ShowWinRate()
     {
         Console.WriteLine($"{ClassName} win rate is {WinCount/FightCount*100}");
