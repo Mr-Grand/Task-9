@@ -4,7 +4,7 @@ public class Fighter2 : Fighter
 {
     private int _attackCount;
 
-    public Fighter2() : base("Slayer", 80, 3, 20)
+    public Fighter2() : base("Slayer", 80, 7, 25)
     {
         
     }

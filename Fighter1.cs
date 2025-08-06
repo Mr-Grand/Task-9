@@ -2,7 +2,7 @@
 
 public class Fighter1 : Fighter
 {
-    private int _critChance = 40;
+    private double _critChance = 40;
     private int _critMulti = 50;
 
     public Fighter1() : base("Warrior", 100, 10, 20)

@@ -64,7 +64,7 @@ public class Fighter
         else
         {
             double winRatePercentage = WinCount / Convert.ToDouble(FightCount) * 100;
-            Console.WriteLine($"{this.ClassName} win .rate is {Math.Round(winRatePercentage)} | F{this.FightCount}/W{this.WinCount}");
+            Console.WriteLine($"{this.ClassName} win rate is {Math.Round(winRatePercentage)} | F{this.FightCount}/W{this.WinCount}");
         }
     }
 
