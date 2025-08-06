@@ -5,16 +5,18 @@ class Program
     static void Main(string[] args)
     {
         Arena arena = new Arena();
+        arena.SimulateXNumberOfFights(100);
+        
         bool ifContinue = true;
         while (ifContinue)
         {
             Console.WriteLine("Добро пожаловать на арену! " +
-                              "Здесь можно выбрать двух бойцов и провести спаринг между ними" +
                               "\n1) Выбрать бойцов" +
                               "\n2) Посмотреть статистику побед" +
                               "\n3) Выход из программы");
 
             ConsoleKey input = Console.ReadKey().Key;
+            Console.WriteLine();
             
             bool switchContinue = true;
             while (switchContinue)
@@ -32,9 +34,11 @@ class Program
 
                         Console.WriteLine("Кого выберете для дуэли?");
                         int chooseFirstFighter = Convert.ToInt32(Console.ReadLine()) - 1;
+                        Console.WriteLine();
                         arena.AddFighter(ArenaFighters.Fighters[chooseFirstFighter]);
                         Console.WriteLine($"Хороший выбор. Кто будет его оппонентом?");
                         int chooseSecondFighter = Convert.ToInt32(Console.ReadLine()) - 1;
+                        Console.WriteLine();
                         arena.AddFighter(ArenaFighters.Fighters[chooseSecondFighter]);
 
                         Console.WriteLine($"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter].ShowName()} и " +
@@ -44,10 +48,12 @@ class Program
                                           "\n2) Нет, выйти в меню");
                         
                         ConsoleKey inputIfStart = Console.ReadKey().Key;
+                        Console.WriteLine();
                         if (inputIfStart == ConsoleKey.D1)
                         {
                             arena.StartFightOnArena();
                             arena.ShowFightResult();
+                            switchContinue = false;
                             break;
                         }
                         else
@@ -57,14 +63,12 @@ class Program
                             switchContinue = false;
                             break;
                         }
-                        
-                        
-                        
                     case ConsoleKey.D2:
                         foreach (Fighter fighter in ArenaFighters.Fighters)
                         {
                             fighter.ShowWinRate();
                         }
+                        switchContinue = false;
                         break;
                     case ConsoleKey.D3:
                         switchContinue = false;

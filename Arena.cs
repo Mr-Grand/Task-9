@@ -40,6 +40,7 @@ public class Arena
             EndFightOnArena();
         }
     }
+    
     public void EndFightOnArena()
     {
         foreach (var fighter in _fightersOnArena)
@@ -47,5 +48,21 @@ public class Arena
             fighter.RestoreAfterFight();
         }
         _fightersOnArena.Clear();
+    }
+
+    public void SimulateXNumberOfFights(int x)
+    {
+        for (int i = 0; i < x; i++)
+        {
+            AddFighter(ArenaFighters.Fighters[RandomClass.Random.Next(ArenaFighters.Fighters.Count)]);
+            AddFighter(ArenaFighters.Fighters[RandomClass.Random.Next(ArenaFighters.Fighters.Count)]);
+            StartFightOnArena();
+            ShowFightResult();
+            EndFightOnArena();
+        }
+        /*Console.SetCursorPosition(0,0);
+        Console.Clear();*/
+        Console.Write("\f\u001bc\x1B[3J"); // Console.Clear не чистит всю консоль
+        Console.WriteLine(new string('-',50));
     }
 }
