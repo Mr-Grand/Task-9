@@ -29,7 +29,12 @@ public class Fighter
 
     public virtual void TakeDamage(int amount)
     {
-        Health -= (amount - Armour);
+        if (amount > Armour)
+        {
+            Health -= (amount - Armour);
+        }
+        else
+        { }
     }
 
     public virtual void DealDamageTo(Fighter fighter)
@@ -64,7 +69,8 @@ public class Fighter
         else
         {
             double winRatePercentage = WinCount / Convert.ToDouble(FightCount) * 100;
-            Console.WriteLine($"{this.ClassName} win rate is {Math.Round(winRatePercentage)} | F{this.FightCount}/W{this.WinCount}");
+            Console.WriteLine($"{this.ClassName} win rate is {Math.Round(winRatePercentage)} | " +
+                              $"F{this.FightCount}/W{this.WinCount}");
         }
     }
 

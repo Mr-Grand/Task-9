@@ -12,7 +12,6 @@ public class Fighter4 : Fighter
 
     public Fighter4() : base("Mage", 70, 5, 10)
     {
-        
     }
 
     public override void DealDamageTo(Fighter fighter)

@@ -10,6 +10,6 @@ public static class ArenaFighters
         new Fighter4(),
         new Fighter5()
     };
-    
+
     public static IReadOnlyList<Fighter> Fighters => _fighters;
 }

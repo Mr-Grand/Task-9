@@ -6,12 +6,11 @@ public class Fighter2 : Fighter
 
     public Fighter2() : base("Slayer", 80, 7, 25)
     {
-        
     }
 
     public override void DealDamageTo(Fighter fighter)
     {
-        if (_attackCount == 3)
+        if (_attackCount == 2)
         {
             Console.WriteLine("Произошла двойная атака!");
             base.DealDamageTo(fighter);
@@ -23,6 +22,11 @@ public class Fighter2 : Fighter
             base.DealDamageTo(fighter);
             _attackCount++;
         }
-       
+    }
+
+    public override void RestoreAfterFight()
+    {
+        _attackCount = 0;
+        base.RestoreAfterFight();
     }
 }

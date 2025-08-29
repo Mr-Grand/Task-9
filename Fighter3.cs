@@ -8,7 +8,6 @@ public class Fighter3 : Fighter
 
     public Fighter3() : base("Berserk", 100, 0, 30)
     {
-        
     }
 
     public override void TakeDamage(int amount)
@@ -16,7 +15,8 @@ public class Fighter3 : Fighter
         if (_rage >= _maxRage)
         {
             base.TakeDamage(amount);
-            Health += _skillHealthRestore;
+            int possibleRestoredHealth = Health + _skillHealthRestore;
+            Health = int.Min(MaximumHealth, possibleRestoredHealth);
             Console.WriteLine("Ярость была поглощена, здоровье частично восстановлено");
             _rage = 0;
         }

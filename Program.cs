@@ -6,7 +6,7 @@ class Program
     {
         Arena arena = new Arena();
         arena.SimulateXNumberOfFights(100);
-        
+
         bool ifContinue = true;
         while (ifContinue)
         {
@@ -17,7 +17,7 @@ class Program
 
             ConsoleKey input = Console.ReadKey().Key;
             Console.WriteLine();
-            
+
             bool switchContinue = true;
             while (switchContinue)
             {
@@ -41,12 +41,13 @@ class Program
                         Console.WriteLine();
                         arena.AddFighter(ArenaFighters.Fighters[chooseSecondFighter]);
 
-                        Console.WriteLine($"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter].ShowName()} и " +
-                                          $"{ArenaFighters.Fighters[chooseSecondFighter].ShowName()}!");
+                        Console.WriteLine(
+                            $"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter].ShowName()} и " +
+                            $"{ArenaFighters.Fighters[chooseSecondFighter].ShowName()}!");
                         Console.WriteLine("Начинаем битву?" +
                                           "\n1) Да, начинаем" +
                                           "\n2) Нет, выйти в меню");
-                        
+
                         ConsoleKey inputIfStart = Console.ReadKey().Key;
                         Console.WriteLine();
                         if (inputIfStart == ConsoleKey.D1)
@@ -58,7 +59,7 @@ class Program
                         }
                         else
                         {
-                            Console.SetCursorPosition(0,0);
+                            Console.SetCursorPosition(0, 0);
                             Console.Clear();
                             switchContinue = false;
                             break;
@@ -68,6 +69,7 @@ class Program
                         {
                             fighter.ShowWinRate();
                         }
+
                         switchContinue = false;
                         break;
                     case ConsoleKey.D3:

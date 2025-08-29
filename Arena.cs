@@ -14,7 +14,10 @@ public class Arena
         while (_fightersOnArena[0].CheckHealth() > 0 && _fightersOnArena[1].CheckHealth() > 0)
         {
             _fightersOnArena[0].DealDamageTo(_fightersOnArena[1]);
-            _fightersOnArena[1].DealDamageTo(_fightersOnArena[0]);
+            if (_fightersOnArena[1].CheckHealth() > 0)
+            {
+                _fightersOnArena[1].DealDamageTo(_fightersOnArena[0]);
+            }
         }
         _fightersOnArena[0].AddBattleToCount();
         _fightersOnArena[1].AddBattleToCount();
@@ -22,12 +25,7 @@ public class Arena
 
     public void ShowFightResult()
     {
-        if (_fightersOnArena[0].CheckHealth() < 0 && _fightersOnArena[1].CheckHealth() < 0)
-        {
-            Console.WriteLine("Произошла ничья!");
-            EndFightOnArena();
-        }
-        else if (_fightersOnArena[0].CheckHealth() <= 0)
+        if (_fightersOnArena[0].CheckHealth() <= 0)
         {
             Console.WriteLine($"Победил {_fightersOnArena[1].ShowName()}!");
             _fightersOnArena[1].AddWinToCount();
@@ -40,13 +38,14 @@ public class Arena
             EndFightOnArena();
         }
     }
-    
+
     public void EndFightOnArena()
     {
         foreach (var fighter in _fightersOnArena)
         {
             fighter.RestoreAfterFight();
         }
+
         _fightersOnArena.Clear();
     }
 
@@ -60,9 +59,10 @@ public class Arena
             ShowFightResult();
             EndFightOnArena();
         }
+
         /*Console.SetCursorPosition(0,0);
         Console.Clear();*/
         Console.Write("\f\u001bc\x1B[3J"); // Console.Clear не чистит всю консоль
-        Console.WriteLine(new string('-',50));
+        Console.WriteLine(new string('-', 50));
     }
 }
