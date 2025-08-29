@@ -24,26 +24,8 @@ class Program
                 switch (input)
                 {
                     case ConsoleKey.D1:
-                        Console.WriteLine($"В казарме есть {ArenaFighters.Fighters.Count} бойцов. Вот их классы:");
-                        int i = 1;
-                        foreach (Fighter fighter in ArenaFighters.Fighters)
-                        {
-                            Console.WriteLine($"| {i}-{fighter.ShowName()} | ");
-                            i++;
-                        }
-
-                        Console.WriteLine("Кого выберете для дуэли?");
-                        int chooseFirstFighter = Convert.ToInt32(Console.ReadLine()) - 1;
-                        Console.WriteLine();
-                        arena.AddFighter(ArenaFighters.Fighters[chooseFirstFighter]);
-                        Console.WriteLine($"Хороший выбор. Кто будет его оппонентом?");
-                        int chooseSecondFighter = Convert.ToInt32(Console.ReadLine()) - 1;
-                        Console.WriteLine();
-                        arena.AddFighter(ArenaFighters.Fighters[chooseSecondFighter]);
-
-                        Console.WriteLine(
-                            $"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter].ShowName()} и " +
-                            $"{ArenaFighters.Fighters[chooseSecondFighter].ShowName()}!");
+                        ShowAllFightersAndChooseTwoOfThem(arena);
+                        
                         Console.WriteLine("Начинаем битву?" +
                                           "\n1) Да, начинаем" +
                                           "\n2) Нет, выйти в меню");
@@ -79,5 +61,29 @@ class Program
                 }
             }
         }
+    }
+
+    public static void ShowAllFightersAndChooseTwoOfThem(Arena arena)
+    {
+        Console.WriteLine($"В казарме есть {ArenaFighters.Fighters.Count} бойцов. Вот их классы:");
+        int i = 1;
+        foreach (Fighter fighter in ArenaFighters.Fighters)
+        {
+            Console.WriteLine($"| {i}-{fighter.ShowName()} | ");
+            i++;
+        }
+
+        Console.WriteLine("Кого выберете для дуэли?");
+        int chooseFirstFighter = Convert.ToInt32(Console.ReadLine()) - 1;
+        Console.WriteLine();
+        arena.AddFighter(ArenaFighters.Fighters[chooseFirstFighter]);
+        Console.WriteLine($"Хороший выбор. Кто будет его оппонентом?");
+        int chooseSecondFighter = Convert.ToInt32(Console.ReadLine()) - 1;
+        Console.WriteLine();
+        arena.AddFighter(ArenaFighters.Fighters[chooseSecondFighter]);
+
+        Console.WriteLine(
+            $"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter].ShowName()} и " +
+            $"{ArenaFighters.Fighters[chooseSecondFighter].ShowName()}!");
     }
 }

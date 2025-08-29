@@ -57,9 +57,7 @@ public class Arena
             AddFighter(ArenaFighters.Fighters[RandomClass.Random.Next(ArenaFighters.Fighters.Count)]);
             StartFightOnArena();
             ShowFightResult();
-            EndFightOnArena();
         }
-
         /*Console.SetCursorPosition(0,0);
         Console.Clear();*/
         Console.Write("\f\u001bc\x1B[3J"); // Console.Clear не чистит всю консоль
