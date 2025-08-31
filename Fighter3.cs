@@ -3,8 +3,8 @@
 public class Fighter3 : Fighter
 {
     private int _rage = 0;
-    private int _maxRage = 30;
-    private int _skillHealthRestore = 35;
+    private readonly int _maxRage = 30;
+    private readonly int _skillHealthRestore = 35;
 
     public Fighter3() : base("Berserk", 100, 0, 30)
     {
@@ -16,7 +16,7 @@ public class Fighter3 : Fighter
         {
             base.TakeDamage(amount);
             int possibleRestoredHealth = Health + _skillHealthRestore;
-            Health = int.Min(MaximumHealth, possibleRestoredHealth);
+            Health = Math.Min(MaximumHealth, possibleRestoredHealth);
             Console.WriteLine("Ярость была поглощена, здоровье частично восстановлено");
             _rage = 0;
         }

@@ -2,8 +2,8 @@
 
 public class Fighter1 : Fighter
 {
-    private double _critChance = 40;
-    private double _critMulti = 50;
+    private readonly double _critChance = 40;
+    private readonly double _critMulti = 50;
 
     public Fighter1() : base("Warrior", 100, 10, 20)
     {

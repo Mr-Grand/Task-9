@@ -12,7 +12,7 @@ public class Fighter2 : Fighter
     {
         if (_attackCount == 2)
         {
-            Console.WriteLine("Произошла двойная атака!");
+            Console.WriteLine($"У {this.ClassName} сработала двойная атака!");
             base.DealDamageTo(fighter);
             base.DealDamageTo(fighter);
             _attackCount = 0;

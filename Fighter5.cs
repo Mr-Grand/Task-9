@@ -2,7 +2,7 @@
 
 public class Fighter5 : Fighter
 {
-    private double _chanceToDodge = 40;
+    private readonly double _chanceToDodge = 40;
 
     public Fighter5() : base("Trickster", 70, 0, 25)
     {

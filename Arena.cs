@@ -13,6 +13,7 @@ public class Arena
     {
         while (_fightersOnArena[0].CheckHealth() > 0 && _fightersOnArena[1].CheckHealth() > 0)
         {
+            Console.WriteLine(new string('-', 25));
             _fightersOnArena[0].DealDamageTo(_fightersOnArena[1]);
             if (_fightersOnArena[1].CheckHealth() > 0)
             {
@@ -62,5 +63,10 @@ public class Arena
         Console.Clear();*/
         Console.Write("\f\u001bc\x1B[3J"); // Console.Clear не чистит всю консоль
         Console.WriteLine(new string('-', 50));
+    }
+
+    public IReadOnlyList<Fighter> GetFighters()
+    {
+        return _fightersOnArena;
     }
 }

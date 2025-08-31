@@ -2,7 +2,7 @@
 
 public class Fighter4 : Fighter
 {
-    private int _maximumMana = 100;
+    private readonly int _maximumMana = 100;
     private int _mana = 100;
 
     private List<Spell> _spells = new()
@@ -17,7 +17,6 @@ public class Fighter4 : Fighter
     public override void DealDamageTo(Fighter fighter)
     {
         int dealtDamage;
-        // Изменить поиск заклинания не по индексу, а по названию
         if (_mana >= _spells[0].GetSpellManaCost())
         {
             dealtDamage = _spells[0].GetSpellDamage();

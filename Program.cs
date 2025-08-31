@@ -51,6 +51,7 @@ class Program
                         {
                             fighter.ShowWinRate();
                         }
+                        Console.WriteLine();
 
                         switchContinue = false;
                         break;
@@ -74,16 +75,41 @@ class Program
         }
 
         Console.WriteLine("Кого выберете для дуэли?");
-        int chooseFirstFighter = Convert.ToInt32(Console.ReadLine()) - 1;
-        Console.WriteLine();
-        arena.AddFighter(ArenaFighters.Fighters[chooseFirstFighter]);
-        Console.WriteLine($"Хороший выбор. Кто будет его оппонентом?");
-        int chooseSecondFighter = Convert.ToInt32(Console.ReadLine()) - 1;
-        Console.WriteLine();
-        arena.AddFighter(ArenaFighters.Fighters[chooseSecondFighter]);
+        ChooseFighterForArena(arena);
+        Console.WriteLine($"\nХороший выбор. Кто будет его оппонентом?");
+        ChooseFighterForArena(arena);
+        
+        ShowFightersOnArena(arena);
+    }
 
-        Console.WriteLine(
-            $"Сегодня сойдутся в битве {ArenaFighters.Fighters[chooseFirstFighter].ShowName()} и " +
-            $"{ArenaFighters.Fighters[chooseSecondFighter].ShowName()}!");
+    public static void ChooseFighterForArena(Arena arena)
+    {
+        bool fighterCorrectInputCheck = true;
+        while (fighterCorrectInputCheck)
+        {
+            if (int.TryParse(Console.ReadLine(), out int input))
+            {
+                if (!arena.GetFighters().Contains(ArenaFighters.Fighters[input - 1]))
+                {
+                    arena.AddFighter(ArenaFighters.Fighters[input-1]);
+                    fighterCorrectInputCheck = false;
+                }
+                else
+                {
+                    Console.WriteLine("Этот воин уже участвует, выберите другого");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Некорректный ввод, повторите попытку");
+            }
+        }
+    }
+
+    public static void ShowFightersOnArena(Arena arena)
+    {
+        IReadOnlyList<Fighter> fightersOnArena = new List<Fighter>();
+        fightersOnArena = arena.GetFighters();
+        Console.WriteLine($"Сегодня дерутся {fightersOnArena[0].ShowName()} и {fightersOnArena[1].ShowName()}!");
     }
 }
