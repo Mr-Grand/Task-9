@@ -2,9 +2,9 @@
 
 public class Fighter
 {
-    protected string ClassName;
+    protected string ClassName { get; }
     protected int MaximumHealth;
-    protected int Health;
+    public int Health { get; protected set; }
     protected int Armour;
     protected int Damage;
     protected int WinCount;
