@@ -2,7 +2,6 @@
 
 public class Fighter
 {
-    
     protected int MaximumHealth;
     protected int Armour;
     protected int Damage;
@@ -21,14 +20,6 @@ public class Fighter
         Armour = armour;
         Damage = damage;
     }
-
-    // public void ShowFighterInfo()
-    // {
-    //     Console.WriteLine($"Class: {ClassName}" +
-    //                       $"\nHealth - {Health}" +
-    //                       $"\nArmour - {Armour}" +
-    //                       $"\nDamage - {Damage}");
-    // }
 
     public virtual void TakeDamage(int amount)
     {
