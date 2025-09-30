@@ -1,29 +1,30 @@
 ﻿namespace Task_9;
 
-public class Fighter3 : Fighter
+public class FighterBerserk : Fighter
 {
     private int _rage = 0;
     private readonly int _maxRage = 30;
     private readonly int _skillHealthRestore = 35;
 
-    public Fighter3() : base("Berserk", 100, 0, 30)
+    public FighterBerserk() : base("Berserk", 100, 0, 30)
     {
     }
 
     public override void TakeDamage(int amount)
     {
-        if (_rage >= _maxRage)
+        base.TakeDamage(amount);
+        _rage += Convert.ToInt32(Math.Round(amount * 0.5));
+        TryToHealthFromRage();
+    }
+
+    private void TryToHealthFromRage()
+    {
+        if (_rage >= _maxRage && IsAlive)
         {
-            base.TakeDamage(amount);
             int possibleRestoredHealth = Health + _skillHealthRestore;
             Health = Math.Min(MaximumHealth, possibleRestoredHealth);
             Console.WriteLine("Ярость была поглощена, здоровье частично восстановлено");
             _rage = 0;
-        }
-        else
-        {
-            base.TakeDamage(amount);
-            _rage += Convert.ToInt32(Math.Round(amount * 0.5));
         }
     }
 

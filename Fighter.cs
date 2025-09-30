@@ -2,14 +2,17 @@
 
 public class Fighter
 {
-    protected string ClassName { get; }
+    
     protected int MaximumHealth;
-    public int Health { get; protected set; }
     protected int Armour;
     protected int Damage;
     protected int WinCount;
     protected int FightCount;
-
+    
+    public int Health { get; protected set; }
+    public bool IsAlive {get => Health > 0;}
+    protected string ClassName { get; }
+    
     public Fighter(string fighterClass, int health, int armour, int damage)
     {
         ClassName = fighterClass;
@@ -19,13 +22,13 @@ public class Fighter
         Damage = damage;
     }
 
-    public void ShowFighterInfo()
-    {
-        Console.WriteLine($"Class: {ClassName}" +
-                          $"\nHealth - {Health}" +
-                          $"\nArmour - {Armour}" +
-                          $"\nDamage - {Damage}");
-    }
+    // public void ShowFighterInfo()
+    // {
+    //     Console.WriteLine($"Class: {ClassName}" +
+    //                       $"\nHealth - {Health}" +
+    //                       $"\nArmour - {Armour}" +
+    //                       $"\nDamage - {Damage}");
+    // }
 
     public virtual void TakeDamage(int amount)
     {
@@ -33,16 +36,12 @@ public class Fighter
         {
             Health -= (amount - Armour);
         }
-        else
-        { }
     }
 
     public virtual void DealDamageTo(Fighter fighter)
     {
-        int dealtDamage;
-        dealtDamage = this.Damage;
         Console.WriteLine($"{this.ClassName} атакует");
-        fighter.TakeDamage(dealtDamage);
+        fighter.TakeDamage(Damage);
     }
 
     public virtual void RestoreAfterFight()
@@ -77,10 +76,5 @@ public class Fighter
     public string ShowName()
     {
         return ClassName;
-    }
-
-    public int CheckHealth()
-    {
-        return Health;
     }
 }

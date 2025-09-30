@@ -1,6 +1,6 @@
 ﻿namespace Task_9;
 
-public class Fighter4 : Fighter
+public class FighterMage : Fighter
 {
     private readonly int _maximumMana = 100;
     private int _mana = 100;
@@ -10,23 +10,31 @@ public class Fighter4 : Fighter
         new Spell("Fireball", 45, 40)
     };
 
-    public Fighter4() : base("Mage", 70, 5, 10)
+    public FighterMage() : base("Mage", 70, 5, 10)
     {
     }
 
-    public override void DealDamageTo(Fighter fighter)
+    public override void DealDamageTo(Fighter target)
     {
-        int dealtDamage;
+        if (!TryToCastMagicalSpell(target))
+        {
+            base.DealDamageTo(target);
+        }
+    }
+
+    private bool TryToCastMagicalSpell(Fighter target)
+    {
         if (_mana >= _spells[0].GetSpellManaCost())
         {
-            dealtDamage = _spells[0].GetSpellDamage();
+            int dealtDamage = _spells[0].GetSpellDamage();
             Console.WriteLine($"Было использовано заклинание {_spells[0].GetSpellName()}!");
-            fighter.TakeDamage(dealtDamage);
+            target.TakeDamage(dealtDamage);
             _mana -= _spells[0].GetSpellManaCost();
+            return true;
         }
         else
         {
-            base.DealDamageTo(fighter);
+            return false;
         }
     }
 

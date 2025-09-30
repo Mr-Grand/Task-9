@@ -2,52 +2,52 @@
 
 public class Arena
 {
-    private List<Fighter> _fightersOnArena = new();
+    private List<Fighter> _fighters = new();
 
     public void AddFighter(Fighter fighter)
     {
-        _fightersOnArena.Add(fighter);
+        _fighters.Add(fighter);
     }
 
     public void StartFightOnArena()
     {
-        while (_fightersOnArena[0].CheckHealth() > 0 && _fightersOnArena[1].CheckHealth() > 0)
+        while (_fighters[0].IsAlive && _fighters[1].IsAlive)
         {
             Console.WriteLine(new string('-', 25));
-            _fightersOnArena[0].DealDamageTo(_fightersOnArena[1]);
-            if (_fightersOnArena[1].CheckHealth() > 0)
+            _fighters[0].DealDamageTo(_fighters[1]);
+            if (_fighters[1].IsAlive)
             {
-                _fightersOnArena[1].DealDamageTo(_fightersOnArena[0]);
+                _fighters[1].DealDamageTo(_fighters[0]);
             }
         }
-        _fightersOnArena[0].AddBattleToCount();
-        _fightersOnArena[1].AddBattleToCount();
+        _fighters[0].AddBattleToCount();
+        _fighters[1].AddBattleToCount();
     }
 
     public void ShowFightResult()
     {
-        if (_fightersOnArena[0].CheckHealth() <= 0)
+        if (!_fighters[0].IsAlive)
         {
-            Console.WriteLine($"Победил {_fightersOnArena[1].ShowName()}!");
-            _fightersOnArena[1].AddWinToCount();
+            Console.WriteLine($"Победил {_fighters[1].ShowName()}!");
+            _fighters[1].AddWinToCount();
             EndFightOnArena();
         }
-        else if (_fightersOnArena[1].CheckHealth() <= 0)
+        else if (!_fighters[1].IsAlive)
         {
-            Console.WriteLine($"Победил {_fightersOnArena[0].ShowName()}!");
-            _fightersOnArena[0].AddWinToCount();
+            Console.WriteLine($"Победил {_fighters[0].ShowName()}!");
+            _fighters[0].AddWinToCount();
             EndFightOnArena();
         }
     }
 
     public void EndFightOnArena()
     {
-        foreach (var fighter in _fightersOnArena)
+        foreach (var fighter in _fighters)
         {
             fighter.RestoreAfterFight();
         }
 
-        _fightersOnArena.Clear();
+        _fighters.Clear();
     }
 
     public void SimulateXNumberOfFights(int x)
@@ -67,6 +67,6 @@ public class Arena
 
     public IReadOnlyList<Fighter> GetFighters()
     {
-        return _fightersOnArena;
+        return _fighters;
     }
 }
